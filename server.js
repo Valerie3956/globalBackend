@@ -4,18 +4,18 @@ const mongoose = require("mongoose")
 require('dotenv').config()
 const URL = process.env.MONGO_URL
 const app = express()
-const cors = require('cors');
-const corsOptions = {
-    origin: 'https://technical-tasks.onrender.com/',
-    optionsSuccessStatus: 200,
-  };
+// const cors = require('cors');
+// const corsOptions = {
+//     origin: 'https://technical-tasks.onrender.com/',
+//     optionsSuccessStatus: 200,
+//   };
 
 
 
 app.use(morgan('dev'))
 app.use(express.json())
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
+// app.use(cors(corsOptions));
+// app.options('*', cors(corsOptions));
 
 const connectToDb = async () => {
     try {
