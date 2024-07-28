@@ -8,7 +8,7 @@ const cors = require('cors');
 const corsOptions = {
     origin: '*' ,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   };
   const {expressjwt} = require('express-jwt')
   const SECRET = process.env.SECRET
