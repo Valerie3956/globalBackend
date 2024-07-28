@@ -4,10 +4,11 @@ const mongoose = require("mongoose")
 require('dotenv').config()
 const URL = process.env.MONGO_URL
 const app = express()
+const cors = require('cors');
 
 app.use(morgan('dev'))
 app.use(express.json())
-
+app.use(cors());
 
 
 const connectToDb = async () => {
