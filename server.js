@@ -6,7 +6,7 @@ const URL = process.env.MONGO_URL
 const app = express()
 const cors = require('cors');
 const corsOptions = {
-    origin: 'https://technical-tasks.onrender.com',
+    origin: '*' ,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type'],
   };
