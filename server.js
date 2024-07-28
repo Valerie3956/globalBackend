@@ -10,6 +10,8 @@ const corsOptions = {
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type'],
   };
+  const {expressjwt} = require('express-jwt')
+  const SECRET = process.env.SECRET
 
 
 
@@ -31,6 +33,11 @@ connectToDb()
 
 app.use("/students", require("./routes/studentRouter.js"))
 app.use("/courses", require("./routes/courseRouter.js"))
+app.use('/leaderboard', require("./routes/leaderboardRouter.js"))
+
+app.use("/auth", require('./routes/authRouter'))
+app.use('/api', expressjwt({secret: SECRET, algorithms:["HS256"]}))
+app.use('/api/game', require('./routes/gameRouter'))
 
 app.use((err, req, res, next) => {
     console.log(err)
