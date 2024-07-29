@@ -31,11 +31,19 @@ const connectToDb = async () => {
 
 connectToDb()
 
+// student tracker app
 app.use("/students", require("./routes/studentRouter.js"))
 app.use("/courses", require("./routes/courseRouter.js"))
+
+//yahtzee app
 app.use('/leaderboard', require("./routes/leaderboardRouter.js"))
 
-app.use("/auth", require('./routes/authRouter'))
+//morning routine app
+app.use("/morning/journal", require("./routes/journalRouter.js"))
+app.use("/morning/checklist", require("./routes/checklistRouter.js"))
+
+//yahtzee protected routes
+app.use("/auth", require('./routes/yahtzeeAuthRouter.js'))
 app.use('/api', expressjwt({secret: SECRET, algorithms:["HS256"]}))
 app.use('/api/game', require('./routes/gameRouter'))
 
