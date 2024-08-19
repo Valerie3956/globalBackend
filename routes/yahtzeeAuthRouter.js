@@ -1,6 +1,6 @@
 const express = require('express')
 const authRouter = express.Router()
-const User = require("../models/user")
+const User = require("../models/yahtzeeuser")
 const Game = require('../models/game')
 const jwt = require('jsonwebtoken')
 
@@ -19,7 +19,7 @@ authRouter.post("/signup", async (req, res, next) => {
         const savedUser = await newUser.save();
 
         // Give token
-        const token = jwt.sign(savedUser.withoutPassword(), process.env.SECRET);
+        const token = jwt.sign(savedUser.withoutPassword(), process.env.YAHTZEE_SECRET);
         return res.status(201).send({ token, user: savedUser.withoutPassword() });
     } catch (err) {
         res.status(500);
@@ -53,7 +53,7 @@ authRouter.post('/login', async (req, res, next) => {
                 const games = await Game.find({ user: user._id.toString() })
                 console.log(games)
                 //give token
-                const token = jwt.sign(user.withoutPassword(), process.env.SECRET)
+                const token = jwt.sign(user.withoutPassword(), process.env.YAHTZEE_SECRET)
                 return res.status(200).send({ token, user: user.withoutPassword(), userGames : games })
             }
             catch(err){
