@@ -1,7 +1,7 @@
 const express = require('express')
 const gameRouter = express.Router()
 const Game = require('../models/game')
-const User = require('../models/user')
+const User = require('../models/yahtzeeuser')
 
 
 //post game

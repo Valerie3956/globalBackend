@@ -11,8 +11,8 @@ const corsOptions = {
     allowedHeaders: ['Content-Type', 'Authorization'],
   };
   const {expressjwt} = require('express-jwt')
-  const SECRET = process.env.SECRET
-
+  const YAHTZEE_SECRET = process.env.YAHTZEE_SECRET
+const RUNNING_SECRET = process.env.RUNNING_SECRET
 
 
 app.use(morgan('dev'))
@@ -44,8 +44,14 @@ app.use("/morning/checklist", require("./routes/checklistRouter.js"))
 
 //yahtzee protected routes
 app.use("/auth", require('./routes/yahtzeeAuthRouter.js'))
-app.use('/api', expressjwt({secret: SECRET, algorithms:["HS256"]}))
+app.use('/api', expressjwt({secret: YAHTZEE_SECRET, algorithms:["HS256"]}))
 app.use('/api/game', require('./routes/gameRouter'))
+
+//running protected routes
+app.use("/run/auth", require('./routes/runningauthRouter'))
+app.use('/run/api', expressjwt({secret: RUNNING_SECRET, algorithms:["HS256"]}))
+app.use('/run/api/run', require('./routes/runRouter'))
+app.use('/run/api/comments', require('./routes/commentsRouter'))
 
 app.use((err, req, res, next) => {
     console.log(err)
