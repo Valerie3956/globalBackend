@@ -46,6 +46,7 @@ authRouter.post("/login", async (req, res, next) => {
             }
             //give token
             const token = jwt.sign(runner.withoutPassword(), process.env.RUNNING_SECRET)
+            console.log(token)
             return res.status(200).send({ token, user: runner.withoutPassword() })
         })
     }catch(err){
